@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Pro Engineer</string>
+    <string name="copyrigt">© Copyright 2016 - Thomslab - Hidayat Thommi - All Right Reserved</string>
+    <string-array name="electrical_menu">
+        <item>Sun</item>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+</resources>
