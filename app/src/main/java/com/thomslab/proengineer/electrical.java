@@ -26,6 +26,8 @@ public class electrical extends Fragment {
         //Returning the layout file after inflating
         //Change R.layout.tab1 in you classes
         View view = inflater.inflate(R.layout.electrical_tab, container, false);
+
+
         return view;
 
 
