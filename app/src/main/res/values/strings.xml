@@ -8,10 +8,10 @@
         <item>Venus</item>
         <item>Earth</item>
     </string-array>
-    <string-array name="icons">
+    <array name="icons">
         <item>@drawable/css</item>
         <item>@drawable/html</item>
         <item>@drawable/js</item>
         <item>@drawable/wp</item>
-    </string-array>
+    </array>
 </resources>
