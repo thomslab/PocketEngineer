@@ -1,17 +1,52 @@
 <resources>
     <string name="app_name">Pro Engineer</string>
-    <string name="copyrigt">© Copyright 2016 - Thomslab - Hidayat Thommi - All Right Reserved</string>
+    <string name="copyrigt">© Copyright 2016 - Thomslab - Hidayat Thommi  All Right Reserved.</string>
     <string name="menu_icon">menu icon</string>
+
+    <!-- Electrical Tab menu Array -->
     <string-array name="electrical_menu">
-        <item>Sun</item>
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
+        <item>Current Calculation</item>
+        <item>Voltage Calculation</item>
+        <item>Voltage Drop Calculation</item>
+        <item>Active Power Calculation</item>
+        <item>Apparent Power Calculation</item>
+        <item>Reactive Power Calculation</item>
+        <item>Resistance Calculation</item>
+        <item>Resistor Identification</item>
+        <item>Inductor Color Code</item>
+        <item>Fuses Identification</item>
+        <item>Sum of Resistors</item>
+        <item>Sum of Capacitors</item>
+        <item>SMD Resistor Code</item>
+        <item>Reactance Calculation</item>
+        <item>Impedance Calculation</item>
+        <item>Resonant Frequency Calculation</item>
+        <item>Power Factor Correction</item>
+        <item>PF Correction For Small Loads</item>
+
     </string-array>
-    <array name="icons">
-        <item>@drawable/css</item>
-        <item>@drawable/html</item>
-        <item>@drawable/js</item>
-        <item>@drawable/wp</item>
+
+
+<!-- electrical menu icon -->
+    <array name="electrical_icons">
+        <item>@drawable/currentcalculation</item>
+        <item>@drawable/voltagecalculation</item>
+        <item>@drawable/voltagedropcalculation</item>
+        <item>@drawable/powercalculation</item>
+        <item>@drawable/apparentpowercalculation</item>
+        <item>@drawable/reactivepowercalculation</item>
+        <item>@drawable/resistancecalculation</item>
+        <item>@drawable/resistoridentification</item>
+        <item>@drawable/inductorcolorcode</item>
+        <item>@drawable/fusesidentification</item>
+        <item>@drawable/sumofresistor</item>
+        <item>@drawable/sumofcapacitor</item>
+        <item>@drawable/smdresistor</item>
+        <item>@drawable/reactancecalculation</item>
+        <item>@drawable/inductancecalculation</item>
+        <item>@drawable/resonantfrequency</item>
+        <item>@drawable/powerfactorcorrection</item>
+        <item>@drawable/powerfactorsmall</item>
     </array>
+
 </resources>
