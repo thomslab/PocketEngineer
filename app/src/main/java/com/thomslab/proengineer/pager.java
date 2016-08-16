@@ -17,6 +17,7 @@ public class pager extends FragmentStatePagerAdapter {
     //Constructor to the class
     public pager(FragmentManager fm, int tabCount) {
         super(fm);
+
         //Initializing tab count
         this.tabCount= tabCount;
     }
@@ -24,6 +25,7 @@ public class pager extends FragmentStatePagerAdapter {
     //Overriding method getItem
     @Override
     public Fragment getItem(int position) {
+
         //Returning the current tabs
         switch (position) {
             case 0:

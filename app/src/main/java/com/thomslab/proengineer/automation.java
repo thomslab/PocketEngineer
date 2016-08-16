@@ -10,9 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Belal on 2/3/2016.
- */
 
 //Our class extending fragment
 public class automation extends Fragment {
