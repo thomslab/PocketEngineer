@@ -9,6 +9,12 @@
     <string name="voltage_label_colon">Voltage :</string>
     <string name="power_label_colon">Power :</string>
     <string name="resistance">Resistance</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="power_factor_colon">Power Factor :</string>
+    <string name="voltage_colon">Voltage :</string>
+    <string name="power">Power</string>
+    <string name="type_of_current">Type of Current</string>
+    <string name="power_colon">Power :</string>
 
     <!-- Electrical Tab menu Array -->
     <string-array name="electrical_menu">
