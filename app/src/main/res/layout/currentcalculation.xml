@@ -10,10 +10,12 @@
         android:layout_row="0"
         android:layout_column="0"
         android:text="@string/type_of_current"
+        android:textStyle="bold"
         android:textSize="@dimen/textsize_subheading"
         android:textColor="@color/color_font_primary"
         android:layout_marginTop="10dp"
-        />
+        android:id="@+id/textView2" />
+
     <Spinner
         android:id="@+id/spinner_current_type_0"
         android:layout_row="1"
@@ -27,9 +29,11 @@
         android:layout_marginTop="20dp"
         android:text="@string/use"
         android:textSize="@dimen/textsize_subheading"
+        android:textStyle="bold"
         android:textColor="@color/color_font_primary"
         />
     <RadioGroup
+        android:id="@+id/radio_grp_0"
         android:layout_row="3"
         android:layout_column="0"
         android:layout_marginTop="5dp">
@@ -76,6 +80,15 @@
         android:text="@string/power_colon"
         android:textColor="@color/color_font_primary"
         android:textSize="@dimen/textsize_subheading"/>
+    <TextView
+        android:id="@+id/textview_resistance_0"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:layout_marginTop="15dp"
+        android:text="@string/resistance_colon"
+        android:textColor="@color/color_font_primary"
+        android:textSize="@dimen/textsize_subheading"
+        android:visibility="invisible" />
     <EditText
         android:id="@+id/edittext_power_0"
         android:layout_row="5"
@@ -84,12 +97,32 @@
         android:layout_gravity="bottom"
         android:digits="0123456789"
         android:inputType="number"/>
+    <EditText
+        android:id="@+id/edittext_resistance_0"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:layout_width="120dp"
+        android:layout_gravity="bottom"
+        android:digits="0123456789"
+        android:inputType="number"
+        android:visibility="invisible"/>
     <Spinner
         android:id="@+id/spinner_power_unit_option_0"
         android:layout_row="5"
         android:layout_column="2"
         android:layout_gravity="bottom"
         android:entries="@array/power_unit_option"/>
+    <TextView
+        android:id="@+id/tv_ohm_unit"
+        android:layout_row="5"
+        android:layout_column="2"
+        android:text="@string/ohm"
+        android:textSize="@dimen/textsize_subheading"
+        android:layout_marginStart="@dimen/left_text_margin"
+        android:layout_marginLeft="@dimen/left_text_margin"
+        android:layout_gravity="bottom"
+        android:textColor="@color/color_font_primary"
+        android:visibility="invisible"/>
     <TextView
         android:layout_row="6"
         android:layout_column="0"
@@ -113,5 +146,17 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
         android:text="@string/calculate"/>
+    <TextView
+        android:id="@+id/textview_result_0"
+        android:layout_row="8"
+        android:layout_column="0"
+        android:layout_columnSpan="3"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textSize="@dimen/textsize_subheading"
+        android:textColor="@color/color_font_primary"
+        />
+
+
 
 </GridLayout>
