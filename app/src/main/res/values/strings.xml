@@ -2,6 +2,12 @@
     <string name="app_name">Pro Engineer</string>
     <string name="copyrigt">© Copyright 2016 - Thomslab - Hidayat Thommi  All Right Reserved.</string>
     <string name="menu_icon">menu icon</string>
+    <string name="use">Use</string>
+    <string name="type_of_current_label">Type Of Current</string>
+    <string name="power_label">Power</string>
+    <string name="resistance_label">Resistance</string>
+    <string name="voltage_label_colon">Voltage :</string>
+    <string name="power_label_colon">Power :</string>
 
     <!-- Electrical Tab menu Array -->
     <string-array name="electrical_menu">
@@ -48,5 +54,7 @@
         <item>@drawable/powerfactorcorrection</item>
         <item>@drawable/powerfactorsmall</item>
     </array>
+
+
 
 </resources>

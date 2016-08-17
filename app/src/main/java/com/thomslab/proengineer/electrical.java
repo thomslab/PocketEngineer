@@ -4,13 +4,18 @@ package com.thomslab.proengineer;
  * Created by mitohida on 8/7/2016.
  */
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.thomslab.proengineer.electricaltab.CurrentCalculation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +35,7 @@ public class electrical extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
+        //Change R.layout.tab1 in classes
         View view = inflater.inflate(R.layout.electrical_tab, container, false);
         menuRowItems = new ArrayList<MenuRowItem>();
 
@@ -46,6 +51,15 @@ public class electrical extends Fragment{
         Electrical_Listview = (ListView) view.findViewById(R.id.list_electrical);
         CustomAdapter adapter = new CustomAdapter(getContext(), menuRowItems);
         Electrical_Listview.setAdapter(adapter);
+
+        Electrical_Listview.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0){
+                    Intent myIntent = new Intent(view.getContext(), CurrentCalculation.class);
+                    startActivityForResult(myIntent, 0);
+                }
+            }
+        });
 
         return view;
 
