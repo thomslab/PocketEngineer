@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- Unit of measurement - Only symbols -->
+    <string name="volt">V</string>
+    <string name="drop">ΔV</string>
+    <string name="watt">W</string>
+    <string name="kilowatt">KW</string>
+    <string name="ampere">A</string>
+    <string name="kilo_ampere">kA</string>
+    <string name="volt_ampere">VA</string>
+    <string name="kilovolt_ampere">kVA</string>
+    <string name="megavolt_ampere">MVA</string>
+    <string name="volt_ampere_reactive">VAr</string>
+    <string name="kilovolt_ampere_reactive">kVAr</string>
+    <string name="ampere_hour">Ah</string>
+    <string name="kilowatt_hour">kWh</string>
+    <string name="milli_ampere">mA</string>
+    <string name="horsepower">HP</string>
+    <string name="ohm">Ω</string>
+    <string name="milli_ohm">mΩ</string>
+    <string name="kilo_ohm">kΩ</string>
+    <string name="mega_ohm">MΩ</string>
+    <string name="micro_farad">µF</string>
+    <string name="nano_farad">nF</string>
+    <string name="pico_farad">pF</string>
+    <string name="farad">F</string>
+    <string name="hertz">Hz</string>
+    <string name="kilo_hertz">kHz</string>
+    <string name="mega_hertz">MHz</string>
+    <string name="mm2">mm²</string>
+    <string name="awg">awg</string>
+    <string name="kcmil">kcmil</string>
+    <string name="meter">m</string>
+    <string name="foot">ft</string>
+    <string name="yard">yd</string>
+    <string name="millimeter">mm</string>
+    <string name="centimeter">cm</string>
+    <string name="km">km</string>
+    <string name="inch">inch</string>
+    <string name="time_seconds">sec</string>
+    <string name="rpm">RPM</string>
+    <string name="joule">J</string>
+    <string name="kelvin">K</string>
+    <string name="micro_henry">µH</string>
+    <string name="milli_henry">mH</string>
+    <string name="henry">H</string>
+    <string name="coppia_max_nm">Nm</string>
+    <string name="coppia_max_kgm">kgm</string>
+    <string name="rad_sec">rad/s</string>
+    <string name="meter_sec">m/s</string>
+    <string name="feet_sec">ft/s</string>
+    <string name="erg">erg</string>
+    <string name="bar">bar</string>
+
+</resources>

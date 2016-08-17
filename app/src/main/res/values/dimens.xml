@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="left_text_margin">20dp</dimen>
+    <dimen name="common_elemen_height">40dp</dimen>
+    <dimen name="common_elemen_height2">30dp</dimen>
+    <dimen name="textsize_subheading">17sp</dimen>
+</resources>

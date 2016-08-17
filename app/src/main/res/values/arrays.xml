@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="current_type">
+
+        <item>Direct Current</item>
+        <item>Alternating Single Phase</item>
+        <item>Alternating Three Phase</item>
+    </string-array>
+
+    <string-array name="power_unit_option">
+        <item>W</item>
+        <item>KW</item>
+        <item>HP</item>
+        <item>VA</item>
+    </string-array>
+</resources>
