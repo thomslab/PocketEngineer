@@ -1,5 +1,4 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:rowCount="11"
@@ -10,12 +9,13 @@
     <TextView
         android:layout_row="0"
         android:layout_column="0"
-        android:text="Type of Current"
+        android:text="@string/type_of_current"
         android:textSize="@dimen/textsize_subheading"
         android:textColor="@color/color_font_primary"
         android:layout_marginTop="10dp"
         />
     <Spinner
+        android:id="@+id/spinner_current_type_0"
         android:layout_row="1"
         android:layout_column="0"
         android:layout_columnSpan="2"
@@ -34,10 +34,12 @@
         android:layout_column="0"
         android:layout_marginTop="5dp">
         <RadioButton
+            android:id="@+id/radiobutton_power_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Power"/>
+            android:text="@string/power"/>
         <RadioButton
+            android:id="@+id/radiobutton_resistance_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/resistance"/>
@@ -46,36 +48,44 @@
         android:layout_row="4"
         android:layout_column="0"
         android:layout_marginTop="10dp"
-        android:text="Voltage :"
+        android:text="@string/voltage_colon"
         android:textColor="@color/color_font_primary"
         android:textSize="@dimen/textsize_subheading"/>
     <EditText
+        android:id="@+id/edittext_voltage_0"
         android:layout_row="4"
         android:layout_column="1"
         android:layout_width="120dp"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:digits="0123456789"
+        android:inputType="number"/>
     <TextView
         android:layout_row="4"
         android:layout_column="2"
-        android:text="V"
+        android:text="@string/volt"
         android:textSize="@dimen/textsize_subheading"
         android:layout_marginStart="@dimen/left_text_margin"
         android:layout_marginLeft="@dimen/left_text_margin"
         android:layout_gravity="bottom"
         android:textColor="@color/color_font_primary"/>
     <TextView
+        android:id="@+id/textview_power_0"
         android:layout_row="5"
         android:layout_column="0"
         android:layout_marginTop="15dp"
-        android:text="Power :"
+        android:text="@string/power_colon"
         android:textColor="@color/color_font_primary"
         android:textSize="@dimen/textsize_subheading"/>
     <EditText
+        android:id="@+id/edittext_power_0"
         android:layout_row="5"
         android:layout_column="1"
         android:layout_width="120dp"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:digits="0123456789"
+        android:inputType="number"/>
     <Spinner
+        android:id="@+id/spinner_power_unit_option_0"
         android:layout_row="5"
         android:layout_column="2"
         android:layout_gravity="bottom"
@@ -84,20 +94,24 @@
         android:layout_row="6"
         android:layout_column="0"
         android:layout_marginTop="15dp"
-        android:text="Power Factor :"
+        android:text="@string/power_factor_colon"
         android:textSize="@dimen/textsize_subheading"
         android:textColor="@color/color_font_primary"/>
     <EditText
+        android:id="@+id/edittext_powerfactor_0"
         android:layout_row="6"
         android:layout_column="1"
         android:layout_width="120dp"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:digits="0123456789"
+        android:inputType="number"/>
     <Button
+        android:id="@+id/calculate_current_button"
         android:layout_row="7"
         android:layout_column="0"
         android:layout_columnSpan="3"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:text="CALCULATE"/>
+        android:text="@string/calculate"/>
 
 </GridLayout>
