@@ -56,6 +56,8 @@ public class CurrentCalculation extends AppCompatActivity{
 
 //saat load aplikasi secara default focus pada objek dibawah
        voltage.requestFocus();
+        radio_use.check(R.id.radiobutton_power_0);
+        power_factor.setText("0.9");
 
         //deteksi perubahan radio checked
        radio_use.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -63,9 +65,22 @@ public class CurrentCalculation extends AppCompatActivity{
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.radiobutton_power_0){
                     rd_selected = 0;
+                    spinner_unit_option.setVisibility(View.VISIBLE);
+                    power.setVisibility(View.VISIBLE);
+                    tv_power.setVisibility(View.VISIBLE);
+                    tv_resistance.setVisibility(View.GONE);
+                    resistance.setVisibility(View.GONE);
+                    tv_ohm_unit.setVisibility(View.GONE);
+
 
                 }if  (checkedId == R.id.radiobutton_resistance_0){
                     rd_selected = 1;
+                    spinner_unit_option.setVisibility(View.GONE);
+                    power.setVisibility(View.GONE);
+                    tv_power.setVisibility(View.GONE);
+                    tv_resistance.setVisibility(View.VISIBLE);
+                    resistance.setVisibility(View.VISIBLE);
+                    tv_ohm_unit.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -126,7 +141,8 @@ public class CurrentCalculation extends AppCompatActivity{
                     sum_current = num_power / num_voltage;
                     textview_result.setText(String.format("%.2f", sum_current)+" A");
 
-                }else {
+
+                }else if (rd_selected == 0 && sp_selected == 0 && sp_unit_selected == 1){
                     textview_result.setText("coba");
                 }
 

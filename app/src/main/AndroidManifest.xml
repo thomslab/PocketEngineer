@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CurrentCalculation"
-            android:label="@string/app_name">
+            android:label="Current Calculation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
