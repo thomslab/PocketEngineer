@@ -26,9 +26,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         // penambahan tabs dan teks tab
         tabLayout.addTab(tabLayout.newTab().setText("Electrical"));
-        tabLayout.addTab(tabLayout.newTab().setText("Automation"));
+        tabLayout.addTab(tabLayout.newTab().setText("Instrument"));
         tabLayout.addTab(tabLayout.newTab().setText("Mechanical"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         // inisialisasi pager
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -40,7 +39,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         viewPager.setAdapter(pagerAdapter);
 
         // menambahkan Ontabselectedlistener untuk swipe views
-        tabLayout.addOnTabSelectedListener(this);
+       //tabLayout.addOnTabSelectedListener(this);
+        tabLayout.setSmoothScrollingEnabled(true);
+        tabLayout.setHorizontalScrollBarEnabled(true);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

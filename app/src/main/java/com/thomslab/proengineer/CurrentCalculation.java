@@ -1,8 +1,13 @@
 package com.thomslab.proengineer;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,6 +15,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.thomslab.proengineer.R;
 
@@ -26,12 +32,13 @@ public class CurrentCalculation extends AppCompatActivity{
     private RadioGroup radio_use;
     private Spinner spinner_current_option, spinner_unit_option;
 
-    private Double num_voltage,num_power,num_resistance,num_pf,sum_current = 5.0;
+    private Double num_voltage,num_power,num_resistance,num_pf,sum_current ;
 
     //untuk id pada radio button dan spinner selected
     private int rd_selected;
     private int sp_selected;
     private int sp_unit_selected;
+    final Context context = this;
 
 
 
@@ -39,6 +46,8 @@ public class CurrentCalculation extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currentcalculation);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // inisialisasi objek
         resistance = (EditText) findViewById(R.id.edittext_resistance_0);
@@ -134,7 +143,80 @@ public class CurrentCalculation extends AppCompatActivity{
 
             @Override
             public void onClick(View v) {
-                if (rd_selected == 0 && sp_selected == 0 && sp_unit_selected == 0){
+                // membuat alert ketika salah satu field kosong
+
+                if (rd_selected == 0 && voltage.getText().toString().isEmpty() || power.getText().toString().isEmpty() || power_factor.getText().toString().isEmpty()
+                        )
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
+                    builder.setTitle("WARNING");
+                    builder.setMessage("Please enter all required field !");
+                    builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }else if (rd_selected == 1 && voltage.getText().toString().isEmpty() || resistance.getText().toString().isEmpty() || power_factor.getText().toString().isEmpty())
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
+                    builder.setTitle("WARNING");
+                    builder.setMessage("Please enter all required field !");
+                    builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }else {
+                    num_voltage = Double.parseDouble(voltage.getText().toString());
+                    num_power = Double.parseDouble(power.getText().toString());
+                    num_pf = Double.parseDouble(power_factor.getText().toString());
+                    sum_current = num_power / num_voltage;
+                    textview_result.setText(String.format("%.2f", sum_current)+" A");
+
+
+                }
+
+
+              // num_voltage = Double.parseDouble(voltage.getText().toString());
+               // num_power = Double.parseDouble(power.getText().toString());
+                //num_pf = Double.parseDouble(power_factor.getText().toString());
+              /*  if (num_voltage.isNaN() || num_voltage.isNaN()){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
+                    builder.setTitle("WARNING");
+                    builder.setMessage("Please enter all required field !");
+                    builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else {
+                    sum_current = num_power / num_voltage;
+                    textview_result.setText(String.format("%.2f", sum_current)+" A");
+
+                }*/
+
+                //num_resistance = Double.parseDouble(resistance.getText().toString());
+
+                //menampilkan alert dialog saat salah satu field kosong
+               /* if (num_voltage == null || rd_selected == 0 || num_pf == null || num_power == null){
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
+                    builder.setTitle("WARNING");
+                    builder.setMessage("Please enter all required field !");
+                    builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+        }*/
+                /*if (rd_selected == 0 && sp_selected == 0 && sp_unit_selected == 0){
                     num_voltage = Double.parseDouble(voltage.getText().toString());
                     num_power = Double.parseDouble(power.getText().toString());
 
@@ -144,7 +226,7 @@ public class CurrentCalculation extends AppCompatActivity{
 
                 }else if (rd_selected == 0 && sp_selected == 0 && sp_unit_selected == 1){
                     textview_result.setText("coba");
-                }
+                }*/
 
                 //num_resistance = Double.parseDouble(resistance.getText().toString());
                // num_pf = Double.parseDouble(power_factor.getText().toString());
@@ -158,6 +240,16 @@ public class CurrentCalculation extends AppCompatActivity{
 
 
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

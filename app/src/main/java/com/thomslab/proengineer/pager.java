@@ -32,8 +32,8 @@ public class pager extends FragmentStatePagerAdapter {
                 electrical electrical = new electrical();
                 return electrical;
             case 1:
-                automation automation = new automation();
-                return automation;
+                instrument instrument = new instrument();
+                return instrument;
             case 2:
                 mechanical mechanical = new mechanical();
                 return mechanical;

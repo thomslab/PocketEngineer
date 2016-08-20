@@ -27,10 +27,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".CurrentCalculation"
-            android:label="Current Calculation">
+            android:label="Current Calculation"
+            android:parentActivityName="com.thomslab.proengineer.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.thomslab.proengineer.MainActivity" />
         </activity>
 
     </application>

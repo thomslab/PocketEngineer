@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 
 //Our class extending fragment
-public class automation extends Fragment {
+public class instrument extends Fragment {
 
     //Overriden method onCreateView
     @Override
@@ -20,7 +20,7 @@ public class automation extends Fragment {
 
         //Returning the layout file after inflating
         //Change R.layout.tab1 in you classes
-        View view = inflater.inflate(R.layout.automation_tab, container, false);
+        View view = inflater.inflate(R.layout.instrument_tab, container, false);
         return view;
     }
 }

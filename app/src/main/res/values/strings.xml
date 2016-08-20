@@ -21,10 +21,10 @@
     <string-array name="electrical_menu">
         <item>Current Calculation</item>
         <item>Voltage Calculation</item>
-        <item>Voltage Drop Calculation</item>
-        <item>Active Power Calculation</item>
-        <item>Apparent Power Calculation</item>
-        <item>Reactive Power Calculation</item>
+        <item>Voltage Drop Calculation </item>
+        <item>Active Power Calculation </item>
+        <item>Apparent Power Calculation </item>
+        <item>Reactive Power Calculation </item>
         <item>Resistance Calculation</item>
         <item>Resistor Identification</item>
         <item>Inductor Color Code</item>
@@ -36,7 +36,7 @@
         <item>Impedance Calculation</item>
         <item>Resonant Frequency Calculation</item>
         <item>Power Factor Correction</item>
-        <item>PF Correction For Small Loads</item>
+        <item>PF Correction For Small Loads </item>
 
     </string-array>
 
