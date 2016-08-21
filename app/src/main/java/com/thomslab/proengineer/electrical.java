@@ -21,6 +21,7 @@ import java.util.List;
 //Our class extending fragment
 public class electrical extends Fragment{
 
+
     String[] listTitle;
     TypedArray ImageTitle;
 

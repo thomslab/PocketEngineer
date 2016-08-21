@@ -9,6 +9,8 @@ public class MenuRowItem {
     private String List_Title;
     private int Image_Title;
 
+
+    // constructor untuk custom listview
     public MenuRowItem(int Image_Title, String List_Title) {
 
         this.Image_Title = Image_Title;

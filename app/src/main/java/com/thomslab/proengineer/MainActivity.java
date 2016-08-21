@@ -39,10 +39,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         viewPager.setAdapter(pagerAdapter);
 
         // menambahkan Ontabselectedlistener untuk swipe views
-       //tabLayout.addOnTabSelectedListener(this);
+        tabLayout.addOnTabSelectedListener(this);
         tabLayout.setSmoothScrollingEnabled(true);
         tabLayout.setHorizontalScrollBarEnabled(true);
 
+        //deteksi on page selected
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {

@@ -1,13 +1,10 @@
 package com.thomslab.proengineer;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -15,119 +12,112 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.thomslab.proengineer.R;
 
 /**
- * Created by mitohida on 8/16/2016.
+ * Created by mitohida on 8/21/2016.
  */
 
 public class CurrentCalculation extends AppCompatActivity{
 
-    // variable untuk kalkulasi arus
-    private EditText voltage,power,resistance,power_factor;
+    //deklarasi variabel widget layout
+    private Spinner sp_current_option,sp_unit_power_option;
+    private RadioGroup rd_use;
+    private TextView type_current_tv,use_tv,voltage_tv,voltage_unit_tv,power_tv,resistance_tv,
+            ohm_unit_tv,power_factor_tv,current_result_tv;
+    private EditText voltage_et,PR_et,power_factor_et;
     private Button button_calculate;
-    private TextView tv_power,tv_resistance,textview_result,tv_ohm_unit;
-    private RadioGroup radio_use;
-    private Spinner spinner_current_option, spinner_unit_option;
 
-    private Double num_voltage,num_power,num_resistance,num_pf,sum_current ;
+    //variabel integer untuk menyimpan posisi radio button dan spinner
+    private int rd_checked, sp1_selected, sp2_selected;
 
-    //untuk id pada radio button dan spinner selected
-    private int rd_selected;
-    private int sp_selected;
-    private int sp_unit_selected;
-    final Context context = this;
-
-
-
+    //oncreate activity method callback
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //set xml layout untuk activity
         setContentView(R.layout.currentcalculation);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //referensi untuk masing masing variabel widget
+        sp_current_option = (Spinner)findViewById(R.id.spinner_current_type_0);
+        sp_unit_power_option = (Spinner)findViewById(R.id.spinner_power_unit_option_0);
+        rd_use = (RadioGroup)findViewById(R.id.radio_grp_0);
+        type_current_tv = (TextView)findViewById(R.id.tv_type_current);
+        use_tv = (TextView)findViewById(R.id.tv_use);
+        voltage_tv = (TextView)findViewById(R.id.tv_voltage);
+        voltage_unit_tv =(TextView)findViewById(R.id.tv_voltage_unit);
+        power_tv = (TextView)findViewById(R.id.textview_power_0);
+        resistance_tv = (TextView)findViewById(R.id.textview_resistance_0);
+        ohm_unit_tv = (TextView)findViewById(R.id.tv_ohm_unit);
+        power_factor_tv = (TextView)findViewById(R.id.tv_power_factor);
+        current_result_tv = (TextView)findViewById(R.id.textview_result_0);
+        voltage_et = (EditText)findViewById(R.id.edittext_voltage_0);
+        PR_et = (EditText)findViewById(R.id.edittext_PR_0);
+        power_factor_et = (EditText)findViewById(R.id.edittext_powerfactor_0);
+        button_calculate = (Button)findViewById(R.id.calculate_current_button);
 
-        // inisialisasi objek
-        resistance = (EditText) findViewById(R.id.edittext_resistance_0);
-        voltage = (EditText) findViewById(R.id.edittext_voltage_0);
-        power = (EditText) findViewById(R.id.edittext_power_0);
-        power_factor = (EditText) findViewById(R.id.edittext_powerfactor_0);
-        button_calculate = (Button) findViewById(R.id.calculate_current_button);
-        textview_result = (TextView) findViewById(R.id.textview_result_0);
-        tv_power = (TextView)findViewById(R.id.textview_power_0);
-        tv_resistance = (TextView) findViewById(R.id.textview_resistance_0);
-        tv_ohm_unit = (TextView) findViewById(R.id.tv_ohm_unit);
-        radio_use = (RadioGroup) findViewById(R.id.radio_grp_0);
-        spinner_current_option = (Spinner) findViewById(R.id.spinner_current_type_0);
-        spinner_unit_option = (Spinner)findViewById(R.id.spinner_power_unit_option_0);
+        //set default value untuk widget spinner dan radio button
+        sp_current_option.setSelection(1);
+        rd_use.check(R.id.radiobutton_power_0);
+        sp_unit_power_option.setSelection(0);
 
-//saat load aplikasi secara default focus pada objek dibawah
-       voltage.requestFocus();
-        radio_use.check(R.id.radiobutton_power_0);
-        power_factor.setText("0.9");
+        //memunculkan power_factor_et saat sp_current_option posisi 1 atau 2 dan hilang saat 0
+        sp_current_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 1){
+                    power_factor_et.setEnabled(true);
+                    sp1_selected = 1;
+                }else if (position == 2){
+                    power_factor_et.setEnabled(true);
+                    sp1_selected = 2;
+                }else {
+                    power_factor_et.setEnabled(false);
+                    sp1_selected = 0;
+                }
+            }
 
-        //deteksi perubahan radio checked
-       radio_use.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        /* menghilangkan power_tv, power_et, dan sp_unit_power_option dan memunculkan resistance_tv,
+        resistance_et dan ohm_unit_tv saat radio checked posisi 1 */
+        rd_use.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.radiobutton_power_0){
-                    rd_selected = 0;
-                    spinner_unit_option.setVisibility(View.VISIBLE);
-                    power.setVisibility(View.VISIBLE);
-                    tv_power.setVisibility(View.VISIBLE);
-                    tv_resistance.setVisibility(View.GONE);
-                    resistance.setVisibility(View.GONE);
-                    tv_ohm_unit.setVisibility(View.GONE);
+                if (checkedId == R.id.radiobutton_resistance_0){
+                    rd_checked = 0;
+                    power_tv.setVisibility(View.INVISIBLE);
+                    sp_unit_power_option.setVisibility(View.INVISIBLE);
+                    resistance_tv.setVisibility(View.VISIBLE);
+                    ohm_unit_tv.setVisibility(View.VISIBLE);
+                }else {
+                    rd_checked = 1;
+                    power_tv.setVisibility(View.VISIBLE);
+                    sp_unit_power_option.setVisibility(View.VISIBLE);
+                    resistance_tv.setVisibility(View.INVISIBLE);
+                    ohm_unit_tv.setVisibility(View.INVISIBLE);
 
-
-                }if  (checkedId == R.id.radiobutton_resistance_0){
-                    rd_selected = 1;
-                    spinner_unit_option.setVisibility(View.GONE);
-                    power.setVisibility(View.GONE);
-                    tv_power.setVisibility(View.GONE);
-                    tv_resistance.setVisibility(View.VISIBLE);
-                    resistance.setVisibility(View.VISIBLE);
-                    tv_ohm_unit.setVisibility(View.VISIBLE);
                 }
             }
         });
-        // deteksi item selected pada spinner current type
-        spinner_current_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        //membuat status integer untuk posisi sp_unit_power_option
+        sp_unit_power_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0){
-                    sp_selected = 0;
-                    power_factor.setEnabled(false);
-
-                }if (position == 1){
-                    sp_selected = 1;
-                    power_factor.setEnabled(true);
-                }if (position == 2){
-                    sp_selected = 2;
-                    power_factor.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                power_factor.setEnabled(true);
-
-            }
-        });
-        //deteksi item selected pada unit option spinner
-        spinner_unit_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0){
-                    sp_unit_selected = 0;
-                }if (position == 1){
-                    sp_unit_selected = 1;
-                }if (position == 2){
-                    sp_unit_selected = 2;
-                }if (position == 3){
-                    sp_unit_selected = 3;
+                switch (position){
+                    case 0: sp2_selected = 0;
+                        break;
+                    case 1: sp2_selected = 1;
+                        break;
+                    case 2: sp2_selected = 2;
+                        break;
+                    case 3: sp2_selected = 3;
+                        break;
                 }
             }
 
@@ -137,119 +127,28 @@ public class CurrentCalculation extends AppCompatActivity{
             }
         });
 
-
-        //button calculate start on event click
+        // kode yang di eksekusi saat button_calculate di klik
         button_calculate.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                // membuat alert ketika salah satu field kosong
-
-                if (rd_selected == 0 && voltage.getText().toString().isEmpty() || power.getText().toString().isEmpty() || power_factor.getText().toString().isEmpty()
-                        )
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
-                    builder.setTitle("WARNING");
-                    builder.setMessage("Please enter all required field !");
-                    builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-
-                }else if (rd_selected == 1 && voltage.getText().toString().isEmpty() || resistance.getText().toString().isEmpty() || power_factor.getText().toString().isEmpty())
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
-                    builder.setTitle("WARNING");
-                    builder.setMessage("Please enter all required field !");
-                    builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-
-                }else {
-                    num_voltage = Double.parseDouble(voltage.getText().toString());
-                    num_power = Double.parseDouble(power.getText().toString());
-                    num_pf = Double.parseDouble(power_factor.getText().toString());
-                    sum_current = num_power / num_voltage;
-                    textview_result.setText(String.format("%.2f", sum_current)+" A");
-
-
-                }
-
-
-              // num_voltage = Double.parseDouble(voltage.getText().toString());
-               // num_power = Double.parseDouble(power.getText().toString());
-                //num_pf = Double.parseDouble(power_factor.getText().toString());
-              /*  if (num_voltage.isNaN() || num_voltage.isNaN()){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
-                    builder.setTitle("WARNING");
-                    builder.setMessage("Please enter all required field !");
-                    builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
-                else {
-                    sum_current = num_power / num_voltage;
-                    textview_result.setText(String.format("%.2f", sum_current)+" A");
-
-                }*/
-
-                //num_resistance = Double.parseDouble(resistance.getText().toString());
-
-                //menampilkan alert dialog saat salah satu field kosong
-               /* if (num_voltage == null || rd_selected == 0 || num_pf == null || num_power == null){
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
-                    builder.setTitle("WARNING");
-                    builder.setMessage("Please enter all required field !");
-                    builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-        }*/
-                /*if (rd_selected == 0 && sp_selected == 0 && sp_unit_selected == 0){
-                    num_voltage = Double.parseDouble(voltage.getText().toString());
-                    num_power = Double.parseDouble(power.getText().toString());
-
-                    sum_current = num_power / num_voltage;
-                    textview_result.setText(String.format("%.2f", sum_current)+" A");
-
-
-                }else if (rd_selected == 0 && sp_selected == 0 && sp_unit_selected == 1){
-                    textview_result.setText("coba");
-                }*/
-
-                //num_resistance = Double.parseDouble(resistance.getText().toString());
-               // num_pf = Double.parseDouble(power_factor.getText().toString());
-
-
-
 
             }
         });
 
 
-
-
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
+    //method untuk dipanggil apabila edittext salah satu atau semua kosong
+    public void edittext_empty(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCalculation.this);
+        builder.setTitle("ATTENTION !");
+        builder.setMessage("Please enter all required field !");
+        builder.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
 }

@@ -14,7 +14,7 @@
         android:textSize="@dimen/textsize_subheading"
         android:textColor="@color/color_font_primary"
         android:layout_marginTop="10dp"
-        android:id="@+id/textView2" />
+        android:id="@+id/tv_type_current" />
 
     <Spinner
         android:id="@+id/spinner_current_type_0"
@@ -24,6 +24,7 @@
         android:layout_marginTop="10dp"
         android:entries="@array/current_type"/>
     <TextView
+        android:id="@+id/tv_use"
         android:layout_row="2"
         android:layout_column="0"
         android:layout_marginTop="20dp"
@@ -49,6 +50,7 @@
             android:text="@string/resistance"/>
     </RadioGroup>
     <TextView
+        android:id="@+id/tv_voltage"
         android:layout_row="4"
         android:layout_column="0"
         android:layout_marginTop="10dp"
@@ -65,13 +67,14 @@
         android:inputType="number"
         android:textAlignment="center"/>
     <TextView
+        android:id="@+id/tv_voltage_unit"
         android:layout_row="4"
         android:layout_column="2"
         android:text="@string/volt"
         android:textSize="@dimen/textsize_subheading"
+        android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/left_text_margin"
         android:layout_marginLeft="@dimen/left_text_margin"
-        android:layout_gravity="bottom"
         android:textColor="@color/color_font_primary"/>
     <TextView
         android:id="@+id/textview_power_0"
@@ -91,7 +94,7 @@
         android:textSize="@dimen/textsize_subheading"
         android:visibility="invisible" />
     <EditText
-        android:id="@+id/edittext_power_0"
+        android:id="@+id/edittext_PR_0"
         android:layout_row="5"
         android:layout_column="1"
         android:layout_width="120dp"
@@ -99,15 +102,6 @@
         android:digits="0123456789"
         android:inputType="number"
         android:textAlignment="center"/>
-    <EditText
-        android:id="@+id/edittext_resistance_0"
-        android:layout_row="5"
-        android:layout_column="1"
-        android:layout_width="120dp"
-        android:layout_gravity="bottom"
-        android:digits="0123456789"
-        android:inputType="number"
-        android:visibility="invisible"/>
     <Spinner
         android:id="@+id/spinner_power_unit_option_0"
         android:layout_row="5"
@@ -126,6 +120,7 @@
         android:textColor="@color/color_font_primary"
         android:visibility="invisible"/>
     <TextView
+        android:id="@+id/tv_power_factor"
         android:layout_row="6"
         android:layout_column="0"
         android:layout_marginTop="15dp"
