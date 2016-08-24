@@ -1,4 +1,4 @@
-package com.thomslab.proengineer;
+package com.thomslab.pocketengineer;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,10 +18,10 @@ import java.util.List;
 public class CustomAdapter extends BaseAdapter {
 
 
-    Context context;
-    List<MenuRowItem> menuRowItems;
+    private Context context;
+    private List<MenuRowItem> menuRowItems;
 
-    public CustomAdapter(Context context, List<MenuRowItem> menuRowItems) {
+    CustomAdapter(Context context, List<MenuRowItem> menuRowItems) {
         this.context = context;
         this.menuRowItems = menuRowItems;
     }

@@ -1,4 +1,4 @@
-package com.thomslab.proengineer;
+package com.thomslab.pocketengineer;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.thomslab.proengineer;
+package com.thomslab.pocketengineer;
 
 /**
  * Created by mitohida on 8/7/2016.
@@ -10,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 //Our class extending fragment
-public class mechanical extends Fragment {
+public class instrument extends Fragment {
 
     //Overriden method onCreateView
     @Override
@@ -19,7 +20,7 @@ public class mechanical extends Fragment {
 
         //Returning the layout file after inflating
         //Change R.layout.tab1 in you classes
-        View view = inflater.inflate(R.layout.mechanical_tab, container, false);
+        View view = inflater.inflate(R.layout.instrument_tab, container, false);
         return view;
     }
 }

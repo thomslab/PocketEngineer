@@ -27,7 +27,7 @@
         android:id="@+id/text_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pro engineer"
+        android:text="Pocket Engineer"
         android:textSize="22sp"
         android:textColor="#fff"
         android:layout_marginTop="8dp"

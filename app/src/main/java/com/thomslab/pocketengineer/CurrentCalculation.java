@@ -1,4 +1,4 @@
-package com.thomslab.proengineer;
+package com.thomslab.pocketengineer;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by mitohida on 8/21/2016.
@@ -29,6 +30,7 @@ public class CurrentCalculation extends AppCompatActivity{
 
     //variabel integer untuk menyimpan posisi radio button dan spinner
     private int rd_checked, sp1_selected, sp2_selected;
+    private float voltage,P_R,pf,sum_current;
 
     //oncreate activity method callback
     @Override
@@ -56,10 +58,11 @@ public class CurrentCalculation extends AppCompatActivity{
         power_factor_et = (EditText)findViewById(R.id.edittext_powerfactor_0);
         button_calculate = (Button)findViewById(R.id.calculate_current_button);
 
-        //set default value untuk widget spinner dan radio button
+        //set default value untuk widget spinner, edittext dan radio button
         sp_current_option.setSelection(1);
         rd_use.check(R.id.radiobutton_power_0);
         sp_unit_power_option.setSelection(0);
+        power_factor_et.setText("0.9");
 
         //memunculkan power_factor_et saat sp_current_option posisi 1 atau 2 dan hilang saat 0
         sp_current_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -67,13 +70,13 @@ public class CurrentCalculation extends AppCompatActivity{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1){
                     power_factor_et.setEnabled(true);
-                    sp1_selected = 1;
+                  // sp1_selected = 1;
                 }else if (position == 2){
                     power_factor_et.setEnabled(true);
-                    sp1_selected = 2;
+                    //sp1_selected = 2;
                 }else {
                     power_factor_et.setEnabled(false);
-                    sp1_selected = 0;
+                   // sp1_selected = 0;
                 }
             }
 
@@ -89,13 +92,13 @@ public class CurrentCalculation extends AppCompatActivity{
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.radiobutton_resistance_0){
-                    rd_checked = 0;
+                   // rd_checked = 0;
                     power_tv.setVisibility(View.INVISIBLE);
                     sp_unit_power_option.setVisibility(View.INVISIBLE);
                     resistance_tv.setVisibility(View.VISIBLE);
                     ohm_unit_tv.setVisibility(View.VISIBLE);
                 }else {
-                    rd_checked = 1;
+                    //rd_checked = 1;
                     power_tv.setVisibility(View.VISIBLE);
                     sp_unit_power_option.setVisibility(View.VISIBLE);
                     resistance_tv.setVisibility(View.INVISIBLE);
@@ -106,7 +109,7 @@ public class CurrentCalculation extends AppCompatActivity{
         });
 
         //membuat status integer untuk posisi sp_unit_power_option
-        sp_unit_power_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       /*sp_unit_power_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
@@ -125,12 +128,31 @@ public class CurrentCalculation extends AppCompatActivity{
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
         // kode yang di eksekusi saat button_calculate di klik
         button_calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                switch (sp_current_option.getSelectedItemPosition()){
+                    case 0: sp1_selected = 0; break;
+                    case 1: sp1_selected = 1; break;
+                    case 2: sp1_selected = 2; break;
+                }
+               // sp1_selected = sp_current_option.getSelectedItemPosition();
+                //rd_checked = rd_use.getCheckedRadioButtonId();
+                //sp2_selected = sp_unit_power_option.getSelectedItemPosition();
+                Toast.makeText(CurrentCalculation.this,sp1_selected,Toast.LENGTH_LONG).show();
+                if (voltage_et.getText().toString().isEmpty()||PR_et.getText().toString().isEmpty()||
+                        power_factor_et.getText().toString().isEmpty()){
+                    edittext_empty();
+                }else {
+                    DC_VPR();
+                    /*if (sp1_selected == 0&&rd_checked==0&&sp2_selected==0){
+                        DC_VPR();
+                    }*/
+                }
+
 
             }
         });
@@ -149,6 +171,23 @@ public class CurrentCalculation extends AppCompatActivity{
         });
         AlertDialog alert = builder.create();
         alert.show();
+
+    }
+    public void DC_VPR(){
+        voltage = Float.parseFloat(voltage_et.getText().toString());
+        P_R = Float.parseFloat(PR_et.getText().toString());
+        sum_current = P_R/voltage;
+        current_result_tv.setText(String.format("%.2f", sum_current)+" A");
+
+    }
+    public void AC_VPRF (){
+        voltage = Float.parseFloat(voltage_et.getText().toString());
+        P_R = Float.parseFloat(PR_et.getText().toString());
+        pf = Float.parseFloat(power_factor_et.getText().toString());
+
+    }
+    public void Current_Result(){
+        current_result_tv.setText(String.format("%.2f", sum_current)+" A");
 
     }
 }
